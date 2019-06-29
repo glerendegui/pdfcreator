@@ -2,9 +2,11 @@
 
 namespace PdfCreator;
 
+use PdfCreator\FPDFExtensions\FPDFExtended;
+
 class PdfDocumentItemImage extends PdfDocumentItem {
 		
-	public function render(\FPDF $pdf) {
+	public function render(FPDFExtended $pdf) {
 		parent::render($pdf);
 
 		$pdf->Image(

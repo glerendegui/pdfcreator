@@ -2,6 +2,8 @@
 
 namespace PdfCreator;
 
+use PdfCreator\FPDFExtensions\FPDFExtended;
+
 class PdfDocumentItem {
 	const TYPE_TEXT = 'T';
 	const TYPE_LINE = 'L';
@@ -64,7 +66,7 @@ class PdfDocumentItem {
 		}
 	}
 	
-	public function render(\FPDF $pdf) {
+	public function render(FPDFExtended $pdf) {
 		
 	}
 	

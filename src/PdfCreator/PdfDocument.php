@@ -2,6 +2,8 @@
 
 namespace PdfCreator;
 
+use PdfCreator\FPDFExtensions\FPDFExtended;
+
 class PdfDocument {
 	
 	private $elements = array();
@@ -15,15 +17,22 @@ class PdfDocument {
 		return -1;
 	}
 	private function sortElements() {
-		uasort($this->elements,array("Brandel\SiteBundle\Helpers\PdfGenerator\PdfDocument","__pdf_document_cmp_item"));
+		uasort($this->elements,array("PdfCreator\PdfDocument","__pdf_document_cmp_item"));
 	}
 	
 	public function __construct($format='A4',$orientation='portrait') {
-		$this->pdf = new \FPDF($orientation,'mm',$format);
+		$this->pdf = new FPDFExtended($orientation,'mm',$format);
 	}
 	
 	public function setElement($key,PdfDocumentItem $elementValue=null) {
 		$this->elements[$key] = $elementValue;
+	}
+	
+	public function changeElementText($key,$newText) {
+		$element = $this->elements[$key];
+		if($element) {
+			$element->setText($newText);
+		}
 	}
 	
 	/**
@@ -40,8 +49,6 @@ class PdfDocument {
 		$this->pdf->SetFont('Arial','B',16);
 		$this->pdf->SetAutoPageBreak(false,0);
 		$this->sortElements();
-		
-		//print_r($this->elements);
 		
 		foreach($this->elements as $element) {
 			/** @var PdfDocumentItem $element */

@@ -2,9 +2,11 @@
 
 namespace PdfCreator;
 
+use PdfCreator\FPDFExtensions\FPDFExtended;
+
 class PdfDocumentItemBox extends PdfDocumentItem {
 		
-	public function render(\FPDF $pdf) {
+	public function render(FPDFExtended $pdf) {
 		parent::render($pdf);
 		
 		$pdf->SetDrawColor($this->getForegroundColor()->getRed(),$this->getForegroundColor()->getGreen(),$this->getForegroundColor()->getBlue());
