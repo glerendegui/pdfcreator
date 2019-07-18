@@ -20,6 +20,9 @@ class PdfCreator {
 			$line ++;
 			/** @var PdfDocumentItem $item */
 			if(empty($data)) continue;
+			// scapping comments
+			if($data[0] == "#") continue;
+			if($data[0][0] == "#") continue;
 			if((sizeof($data) == 1)&&(strlen(trim($data[0])) == 0)) continue;
 			try {
 				$item = PdfDocumentItem::createFromInfo($data);
