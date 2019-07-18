@@ -35,6 +35,10 @@ class PdfDocument {
 		}
 	}
 	
+	public function removeElement($key) {
+		if($this->elements[$key]) unset($this->elements[$key]);
+	}
+	
 	/**
 	 * @param string $key
 	 * @return PdfDocumentItem
